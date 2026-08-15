@@ -16,8 +16,24 @@ roleRef: # Role Reference is the field that specifies which set of permissions (
   name: devops-tls
   apiGroup: rbac.authorization.k8s.io
 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: devops-tls
+subjects:
+- kind: Group
+  name: devops-tls # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: devops-tls
+  apiGroup: rbac.authorization.k8s.io
+
 # Role = The permission list (Rules).
 
 # subjects = The target user, group, or service account (Who).
 
 # roleRef = The pointer that tells Kubernetes: "Take the permissions defined inside this specific Role and apply them to the subjects above."
+
