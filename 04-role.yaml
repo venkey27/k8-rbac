@@ -6,12 +6,14 @@
 
 
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role   # creating one trainee role for assign group
+kind: Role   # creating one admin role for assign group
 metadata:
   namespace: roboshop
-  name: devops-trainees # roboshop pod-reader
+  name: devops-tls # roboshop pod-admin
 
 rules:  # this are the permissions for the role 
-- apiGroups: [""] # "" indicates the core API group
-  resources: ["pods", "pods/log"]  # which resources
-  verbs: ["get", "list", "watch"]  # what are the actions
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["*"]  # which resources
+  verbs: ["*"]  # what are the actions
+
+  # ["*"] ---> * means full CURD access
