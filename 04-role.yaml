@@ -34,3 +34,10 @@ rules:
 - apiGroups: ["storage.k8s.io"]
   resources: ["storageclasses"]
   verbs: ["get", "watch", "list"]
+
+
+  # You could write resources: ["*"] in the ClusterRole, but that would grant full cluster-admin control over the entire Kubernetes 
+  # infrastructure (including all other namespaces, nodes, certificates, and cluster settings).
+
+ # Listing only nodes, persistentvolumes, and storageclasses with verbs: ["get", "list", "watch"] ensures the team gets read-only visibility
+ # into underlying infrastructure without giving them full cluster-wide superuser power.
