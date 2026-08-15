@@ -4,14 +4,20 @@ metadata:
   name: devops-trainees
   namespace: roboshop
 
-subjects: # subjects (WHO): The user, group, or service account receiving access (in your case, the group devops-trainees).
+subjects: # subjects (WHO): The user, group, or service account receiving access (in your case, the role devops-trainees giving to group).
 # Can bind to a ServiceAccount, User, or Group
 - kind: Group 
-  name: devops-trainees # group nsme
+  name: devops-trainees # group name
   namespace: roboshop
   apiGroup: rbac.authorization.k8s.io
-  
+
 roleRef: # Role Reference is the field that specifies which set of permissions (Role or ClusterRole) you are actually granting to the subjects.
   kind: Role
   name: devops-trainees
   apiGroup: rbac.authorization.k8s.io
+
+# Role = The permission list (Rules).
+
+# subjects = The target user, group, or service account (Who).
+
+# roleRef = The pointer that tells Kubernetes: "Take the permissions defined inside this specific Role and apply them to the subjects above."
