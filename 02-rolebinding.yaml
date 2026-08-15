@@ -1,0 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: devops-trainees
+  namespace: roboshop
+
+subjects: # subjects (WHO): The user, group, or service account receiving access (in your case, the group devops-trainees).
+# Can bind to a ServiceAccount, User, or Group
+- kind: Group 
+  name: devops-trainees # group nsme
+  namespace: roboshop
+  apiGroup: rbac.authorization.k8s.io
+  
+roleRef: # Role Reference is the field that specifies which set of permissions (Role or ClusterRole) you are actually granting to the subjects.
+  kind: Role
+  name: devops-trainees
+  apiGroup: rbac.authorization.k8s.io

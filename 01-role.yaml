@@ -1,0 +1,16 @@
+# RBAC (Role-Based Access Control) uses four core resources:
+
+# Namespace-scoped: Role + RoleBinding (applies only inside a specific namespace)
+
+# Cluster-wide: ClusterRole + ClusterRoleBinding (applies across all namespaces and to non-namespaced resources like Nodes or PVs)
+
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role   # creating one role for group
+metadata:
+  namespace: roboshop
+  name: devops-trainees # roboshop pod-reader
+rules:  # this are the permissions for the role 
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "pods/log"]  # which resources
+  verbs: ["get", "list", "watch"]  # what are the actions
