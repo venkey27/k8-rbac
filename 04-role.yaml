@@ -1,10 +1,8 @@
 # RBAC (Role-Based Access Control) uses four core resources:
-
 # Namespace-scoped: Role + RoleBinding (applies only inside a specific namespace)
-
 # Cluster-wide: ClusterRole + ClusterRoleBinding (applies across all namespaces and to non-namespaced resources like Nodes or PVs)
 
-
+# NAMESPACED: true $\rightarrow$ Namespace-level resource (e.g., pods, deployments, services, pvc, configmaps).
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role   # creating one admin role for assign group
 metadata:
@@ -19,6 +17,7 @@ rules:  # this are the permissions for the role
   # ["*"] ---> * means full CURD access
 
 ---
+# NAMESPACED: false $\rightarrow$ Cluster-level resource (e.g., nodes, namespaces, pv, storageclasses, clusterroles).
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -34,7 +33,6 @@ rules:
 - apiGroups: ["storage.k8s.io"]
   resources: ["storageclasses"]
   verbs: ["get", "watch", "list"]
-
 
   # You could write resources: ["*"] in the ClusterRole, but that would grant full cluster-admin control over the entire Kubernetes 
   # infrastructure (including all other namespaces, nodes, certificates, and cluster settings).
